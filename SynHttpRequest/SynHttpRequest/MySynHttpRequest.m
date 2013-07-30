@@ -33,6 +33,14 @@
     //第三步：设置发送方法get,post,put之一
     [request setRequestMethod:@"POST"];
     
+    //第四步：设置缓存策略和客户端认证
+    /*
+    [request setCachePolicy:];
+    [request setCacheStoragePolicy:];
+    [request setClientCertificateIdentity:];
+    [request setClientCertificates:];
+     */
+    
     //第四步：设置属性（属性是我们自定义的）和数据等等信息
     [request addRequestHeader:@"Cookie" value:@"cookies"];
     /*

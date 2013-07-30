@@ -42,7 +42,7 @@
  网络同步请求的一般步骤：
  第一：创建一个NSURL对象，也即是请求网址，网址必须加http://
  第二：创建讲一个ASIHTTPRequest对象，并设置url
- 第三：添加头信息，设置cookies，缓存等，比如addRequestHeader:，setCachePolicy:
+ 第三：添加头信息，设置cookies，缓存策略和客户端认证等，比如addRequestHeader:，setCachePolicy:
  第三：设置get，post,put方法  requestMethod：
  第四：设置要提交的时候所带的数据 setValue:，setPostBody:，setValue一般用来设置属性，setPostBody：用来设置数据域，当然也可以将属性和数据打包在一起，作为要发送（post）的body
  第五：调用startSynchronous方法，开始请求数据         
@@ -50,6 +50,17 @@
  第七：判断是否返回错误[request error];
  第八：根据是否返回错误，看是否返回数据responseString,responseData这是一个方法，获得返回的结果
 
+ 
+ 缓存策略枚举值：
+ ASIUseDefaultCachePolicy                                         0             默认情况下的缓存策略(它不能与其它策略组合使用)
+ 
+ ASIDoNotReadFromCacheCachePolicy                  1             当前请求不读取缓存数据。
+ ASIDoNotWriteToCacheCachePolicy                        2             当前请求不写缓存数据。
+ ASIAskServerIfModifiedWhenStaleCachePolicy      4            默认缓存行为，request会先判断是否存在缓存数据，如果没有再进行网络请求。 如果存在缓存数据，并且数据没有过期，则使用缓存。如果存在缓存数据，但已经过期，request会先进行网络请求，判断服务器版本与本地版本是否一样，如果一样，则使用缓存。如果服务器有新版本，会进行网络请求，并更新本地缓存。（使用GET请求时有效）
+ ASIAskServerIfModifiedCachePolicy                         8             每次请求都会 去服务器判断是否有更新。（使用GET请求时有效）
+ ASIOnlyLoadIfNotCachedCachePolicy                     16          只要有缓存，就读取缓存数据而不管数据是否过期。直到请求的数据不在缓冲中时，才去服务器获取。
+ ASIDontLoadCachePolicy                                           32          只要有缓存，就读取缓存数据而不管数据是否过期。如果缓存中没有数据，则停止，不向服务器请求。
+ ASIFallbackToCacheIfLoadFailsCachePolicy         64          这个选项经常被用来与其它选项组合使用。请求失败时，使用本地缓存数据，如果使用本地缓冲，请求会成功不会引发错误（这个在处理异常时非常有用）
  
  */
 
