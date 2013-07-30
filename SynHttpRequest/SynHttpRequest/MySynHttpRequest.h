@@ -48,7 +48,7 @@
  第五：调用startSynchronous方法，开始请求数据         
  第六：返回头信息，比如responseHeaders：返回的response的Headers       
  第七：判断是否返回错误[request error];
- 第八：根据是否返回错误，看是否返回数据responseString：这是一个方法，获得返回的结果
+ 第八：根据是否返回错误，看是否返回数据responseString,responseData这是一个方法，获得返回的结果
 
  
  */

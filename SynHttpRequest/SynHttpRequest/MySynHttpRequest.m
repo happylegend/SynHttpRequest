@@ -42,7 +42,7 @@
     [request setResponseEncoding:nil];
     */
     
-    //设置数据
+    //设置相关的属性数据
     [request setValue:@"JSON" forKey:@"type"];
     [request setValue:@"query" forKey:@"action"];
     
