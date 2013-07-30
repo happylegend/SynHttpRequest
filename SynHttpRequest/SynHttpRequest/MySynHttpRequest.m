@@ -43,8 +43,10 @@
     */
     
     //设置相关的属性数据
+    /*
     [request setValue:@"JSON" forKey:@"type"];
     [request setValue:@"query" forKey:@"action"];
+     */
     
     //下面是设置要发送数据的相关函数：
     [request setPostBody:nil];
@@ -66,6 +68,10 @@
          或者是先获取返回的data，然后再将data转化为nsstring
         NSData *data = [request responseData];
         NSString *mstr = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+         
+         有时候，发现将data转化后String是Null，有可能是字符编码不兼容，于是去打印了下请求返回的一些参数，显示的是GB2312，所以我们就需要要用GB2312或者是兼容GB2312的字符编码
+         NSStringEncoding enc = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+         NSString *mystr = [[NSString alloc] initWithData:_data encoding:enc];
          
          也可以获取data以后，解序列化
          如果请求的数据是字典的话，那么解序列化的结果就是字典：
